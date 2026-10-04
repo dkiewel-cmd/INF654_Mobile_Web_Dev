@@ -1,0 +1,250 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    --accent-focus: #3b82f6;
+    --accent-relax: #10b981;
+    --bg-surface: #ffffff;
+    --bg-canvas: #f8fafc;
+    --text-main: #334155;
+    --text-muted: #64748b;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: var(--bg-canvas);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+nav {
+    background: var(--primary-gradient) !important;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.15) !important;
+    height: 70px;
+    line-height: 70px;
+}
+
+nav .brand-logo {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    font-size: 1.6rem;
+}
+
+nav ul a {
+    font-weight: 500;
+    transition: color 0.2s ease;
+    font-size: 0.95rem;
+}
+
+nav ul a:hover {
+    color: var(--accent-focus) !important;
+    background-color: transparent !important;
+}
+
+.flex-nav {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    position: relative;
+}
+
+nav .sidenav-trigger {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    height: 100% !important;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+}
+
+nav .sidenav-trigger i {
+    line-height: inherit !important;
+    height: auto !important;
+}
+
+nav .brand-logo.left {
+    position: static !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+    white-space: nowrap;
+}
+
+nav .brand-logo i.left-icon {
+    margin-right: 12px !important;
+    float: none !important;
+    line-height: inherit !important;
+    height: auto !important;
+}
+
+.desktop-links {
+    display: flex !important;
+    height: 100% !important;
+}
+
+.card {
+    border-radius: 16px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    background: var(--bg-surface);
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02) !important;
+}
+
+.hero-card {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+    border: 1px solid #bfdbfe !important;
+}
+
+.spa-section {
+    display: none !important;
+}
+
+.spa-section.active {
+    display: block !important;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.balance-badge {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    color: var(--accent-relax) !important;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    font-weight: 600;
+    border-radius: 6px !important;
+    text-transform: uppercase;
+    font-size: 0.75rem !important;
+    padding: 2px 8px !important;
+    height: auto !important;
+    line-height: normal !important;
+}
+
+.due-badge {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    color: #ef4444 !important;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    font-weight: 600;
+    border-radius: 6px !important;
+}
+
+.collection {
+    border: none !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+}
+
+.collection .collection-item {
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding: 18px 20px !important;
+    background: #ffffff;
+}
+
+h4 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #1e293b;
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+}
+
+.btn, .btn-large {
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-large {
+    height: 54px !important;
+    line-height: 54px !important;
+}
+
+.btn:hover, .btn-large:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+.btn.indigo { background-color: var(--accent-focus) !important; }
+.btn.green.accent-4 { background-color: var(--accent-relax) !important; }
+
+.flashcard-box {
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #ffffff;
+    border-radius: 14px !important;
+    padding: 30px;
+    border: 2px dashed #e2e8f0;
+}
+
+.flashcard-box.front-state {
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: linear-gradient(to bottom right, #ffffff, #f0f7ff);
+}
+
+.flashcard-box.back-state {
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    background: linear-gradient(to bottom right, #ffffff, #f0fdf4);
+}
+
+.offline-banner {
+    background-color: #f59e0b;
+    color: #1e293b;
+    padding: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.2px;
+}
+
+.padding-10 {
+    padding: 10px !important;
+}
+
+.p-15 {
+    padding: 15px !important;
+}
+
+.material-icons {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 992px) {
+    nav .desktop-links {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    nav .brand-logo.left {
+        font-size: 1.3rem;
+    }
+    nav ul a {
+        padding: 0 10px;
+        font-size: 0.85rem;
+    }
+}

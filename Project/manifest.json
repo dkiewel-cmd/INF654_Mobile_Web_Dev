@@ -1,0 +1,19 @@
+{
+  "name": "Loci Intellectus Cognitive Planner",
+  "short_name": "LociIntellectus",
+  "description": "An automated web application designed to balance incremental study routines with optimized wellness recovery windows.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1a237e",
+  "theme_color": "#1a237e",
+  "orientation": "portrait-primary",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "https://gstatic.com",
+      "type": "image/svg+xml",
+      "sizes": "24x24 48x48 96x96 144x144 512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loci Intellectus - Workspace Blueprint</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="offline-banner">
+        <i class="material-icons left" style="margin-right: 6px; font-size: 1.1rem;">cloud_queue</i>
+        PWA Node Running via Local Storage Shell Cached Stacks
+    </div>
+
+    <header>
+        <nav>
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo left-logo" onclick="switchPage('home')">
+                    <i class="material-icons left-icon" style="margin-right: 12px; vertical-align: middle;">psychology</i>Loci Intellectus
+                </a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down desktop-links">
+                    <li><a href="#" onclick="switchPage('home')">Home Dashboard</a></li>
+                    <li><a href="#" onclick="switchPage('study')">Study System</a></li>
+                    <li><a href="#" onclick="switchPage('calendar')">Timeline Schedule</a></li>
+                    <li><a href="#" onclick="switchPage('tasks')">Task Allocations</a></li>
+                    <li><a href="#" onclick="switchPage('profile')">Analytics</a></li>
+                    <li><a href="#" onclick="switchPage('settings')"><i class="material-icons">settings</i></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-nav">
+            <li><div class="user-view">
+                <div class="background" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);"></div>
+                <a><i class="material-icons white-text large">account_circle</i></a>
+                <a><span class="white-text name" style="font-weight:600;">System Workspace</span></a>
+                <a><span class="white-text email">pwa.framework@loci.edu</span></a>
+            </div></li>
+            <li><a href="#" onclick="switchPage('home')"><i class="material-icons">home</i>Home Dashboard</a></li>
+            <li><a href="#" onclick="switchPage('study')"><i class="material-icons">timer</i>Study System</a></li>
+            <li><a href="#" onclick="switchPage('calendar')"><i class="material-icons">event</i>Timeline Schedule</a></li>
+            <li><a href="#" onclick="switchPage('tasks')"><i class="material-icons">assignment</i>Task Allocations</a></li>
+            <li><a href="#" onclick="switchPage('profile')"><i class="material-icons">person</i>Analytics Workspace</a></li>
+            <li><a href="#" onclick="switchPage('settings')"><i class="material-icons">settings</i>System Settings</a></li>
+        </ul>
+    </header>
+
+    <main class="container" style="margin-top: 35px;">
+        
+        <section id="home" class="spa-section active">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card hero-card no-shadow">
+                        <div class="card-content blue-text text-darken-4" style="padding: 30px;">
+                            <span class="card-title" style="font-weight: 700; font-size: 1.8rem; margin-bottom: 8px;">Welcome Back to Focus</span>
+                            <p style="font-size: 1.05rem; opacity: 0.85;">Your automated routine scheduler is balanced. The algorithm locked in a perfectly optimized <strong>1:1 focus-to-recovery time allocation</strong> sequence for your targets today.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m8">
+                    <h4>Remaining Schedule Metrics</h4>
+                    <ul class="collection z-depth-1">
+                        <li class="collection-item">
+                            <label>
+                                <input type="checkbox" class="filled-in" />
+                                <span style="font-size: 1.05rem; color:#1e293b; font-weight:500;">Review Advanced Framework Structural Lifecycles</span>
+                            </label>
+                            <span class="secondary-content badge due-badge" style="padding:4px 8px; height:auto; margin-top:2px;">Priority Target</span>
+                        </li>
+                        <li class="collection-item">
+                            <label>
+                                <input type="checkbox" class="filled-in" />
+                                <span style="font-size: 1.05rem; color:#1e293b; font-weight:500;">Complete 45-Min Automated Study Sync Sequence</span>
+                            </label>
+                            <span class="secondary-content badge balance-badge">Auto Scheduled</span>
+                        </li>
+                        <li class="collection-item">
+                            <label>
+                                <input type="checkbox" class="filled-in" checked="checked" disabled />
+                                <span style="font-size: 1.05rem; text-decoration: line-through; color: #94a3b8;">60-Minute Mental Decompression & Relaxation Break</span>
+                            </label>
+                            <span class="secondary-content grey-text" style="font-weight:600; font-size:0.85rem; text-transform:uppercase; margin-top:4px;">Completed</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col s12 m4">
+                    <h4>System Action Core</h4>
+                    <div class="card" style="border-radius:12px;">
+                        <div class="card-content" style="padding: 24px;">
+                            <button class="btn btn-large indigo waves-effect waves-light" style="width:100%; margin-bottom:14px; background-color:var(--accent-focus)!important;" onclick="switchPage('study')">
+                                <i class="material-icons left">play_circle_filled</i>Launch Study Deck
+                            </button>
+                            <button class="btn btn-large green accent-4 waves-effect waves-light" style="width:100%; margin-bottom:14px; background-color:var(--accent-relax)!important;" onclick="switchPage('tasks')">
+                                <i class="material-icons left">add_task</i>Queue New Metric
+                            </button>
+                            <button class="btn btn-flat waves-effect" style="width:100%; text-align:center; color:var(--text-muted); font-weight:600;" onclick="M.toast({html: 'Syncing dynamic cloud partitions... Success.'})">
+                                <i class="material-icons left">sync</i>Force Ledger Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="study" class="spa-section">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card center-align z-depth-2">
+                        <div class="card-content">
+                            <span class="card-title">Focused Study Countdown</span>
+                            <p class="flow-text">Class/Subject: <strong>INF 654 (Advanced Web Apps)</strong></p>
+                            <div style="margin: 30px 0;">
+                                <h1 id="timer-display" style="font-weight: 200; margin: 0; color: #1a237e;">45:00</h1>
+                                <span class="badge balance-badge">Gentle reminder enabled</span>
+                            </div>
+                            <button class="btn-large waves-effect waves-light indigo" id="timer-btn" onclick="toggleTimer()">
+                                <i class="material-icons left" id="timer-icon">play_arrow</i><span id="timer-text">Start Block</span>
+                            </button>
+                            <button class="btn-flat waves-effect waves-teal" onclick="resetTimer()">Reset</button>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" class="indigo-text font-weight-bold" onclick="M.toast({html: 'Credited session! 45 minutes saved to daily logs.'})">Count session now (Skip clock)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="card z-depth-2">
+                        <div class="card-content">
+                            <span class="card-title">On-The-Go Flashcard Deck</span>
+                            <p class="grey-text">Tap the card below to reveal the answer concept.</p>
+                            <div class="card-panel z-depth-0 center-align flashcard-box front-state indigo-text text-darken-4" onclick="flipCard()">
+                                <h5 id="flashcard-text">What is the baseline role of a Service Worker?</h5>
+                            </div>
+                            <div class="center-align" style="margin-top: 15px;">
+                                <button class="btn-floating btn waves-effect waves-light grey" onclick="prevCard()"><i class="material-icons">chevron_left</i></button>
+                                <span id="card-index" style="margin: 0 15px; font-weight: bold;">Card 1 of 3</span>
+                                <button class="btn-floating btn waves-effect waves-light grey" onclick="nextCard()"><i class="material-icons">chevron_right</i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col s12">
+                    <div class="card grey lighten-4">
+                        <div class="card-content">
+                            <span class="card-title"><i class="material-icons left text-indigo">quiz</i>Automated Practice Exam</span>
+                            <p style="margin-bottom:15px;">Synthesized concept validation:</p>
+                            <p class="flow-text"><strong>Q: Which component ensures asset availability when local devices go entirely offline?</strong></p>
+                            <form action="#" style="margin-top: 15px;">
+                                <p><label><input name="exam-q" type="radio" /> <span>A) Standard Link Tags</span></label></p>
+                                <p><label><input name="exam-q" type="radio" id="correct-ans" /> <span>B) Service Worker Cache Storage</span></label></p>
+                                <p><label><input name="exam-q" type="radio" /> <span>C) Central Database Clusters</span></label></p>
+                            </form>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn indigo" onclick="checkExamAnswer()">Submit Answer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calendar" class="spa-section">
+            <h4>Your Master Balanced Timeline</h4>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs z-depth-1 indigo text-white">
+                        <li class="tab col s4"><a class="white-text active" href="#day-view">Day View</a></li>
+                        <li class="tab col s4"><a class="white-text" href="#week-view">Week Schedule</a></li>
+                        <li class="tab col s4"><a class="white-text" href="#month-view">Month Matrix</a></li>
+                    </ul>
+                </div>
+                <div id="day-view" class="col s12" style="margin-top: 20px;">
+                    <table class="striped white z-depth-1">
+                        <thead>
+                            <tr>
+                                <th>Time Block</th>
+                                <th>Category</th>
+                                <th>Activity Details</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-left: 5px solid #ff5722;">
+                                <td><strong>00:00 - 08:00</strong></td>
+                                <td><span class="chip deep-orange white-text">Sleep Track</span></td>
+                                <td>Mandatory Rest Period (Memory Consolidation Phase)</td>
+                                <td><i class="material-icons green-text left">check_circle</i>Achieved</td>
+                            </tr>
+                            <tr style="border-left: 5px solid #1a237e;">
+                                <td><strong>09:00 - 13:00</strong></td>
+                                <td><span class="chip indigo white-text">Work / Class</span></td>
+                                <td>Fixed employment Hours & Attendance Sync</td>
+                                <td><i class="material-icons green-text left">check_circle</i>Logged</td>
+                            </tr>
+                            <tr style="border-left: 5px solid #00e676;">
+                                <td><strong>14:00 - 14:45</strong></td>
+                                <td><span class="chip balance-badge">Study Reps</span></td>
+                                <td>INF 654: PWA Core Implementation Architecture Study</td>
+                                <td><span class="orange-text font-weight-bold">Up Next</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="week-view" class="col s12" style="padding: 20px; background: white;">
+                    <h5>Weekly Target Progress Tracker</h5>
+                    <div class="progress grey lighten-2">
+                        <div class="determinate green accent-4" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div id="month-view" class="col s12" style="padding: 20px; background: white;">
+                    <h5>Upcoming Exam Roadmap (30-Day Window)</h5>
+                    <p><i class="material-icons left text-red">warning</i><strong>INF 654 Midterm Exam</strong> is scheduled in 12 days.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tasks" class="spa-section">
+            <h4>Data Input Matrix</h4>
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Log Academic/Work Event</span>
+                            <div class="input-field col s12">
+                                <input id="title" type="text" value="INF 654 Architecture Essay">
+                                <label for="title" class="active">Topic</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <select id="task-type" class="browser-default" style="margin-bottom: 15px;">
+                                    <option value="homework">Homework / Lab Assignment</option>
+                                    <option value="exam">Upcoming Exam Target</option>
+                                </select>
+                            </div>
+                            <button class="btn indigo" style="width:100%;" onclick="M.toast({html: 'Item queued! Dynamic routine engine refreshed.'})">Queue Item</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Knowledge Set Documents</span>
+                            <div class="file-field input-field">
+                                <div class="btn indigo">
+                                    <span>Upload</span>
+                                    <input type="file" multiple>
+                                </div>
+                                <div class="file-path-wrapper"><input class="file-path validate" type="text" placeholder="Upload text formats"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profile" class="spa-section">
+            <h4>Consistency Analytics Dashboard</h4>
+            <div class="row">
+                <div class="col s12 m4"><div class="card center-align padding-10"><h5>94% Sync Score</h5></div></div>
+                <div class="col s12 m4"><div class="card center-align padding-10"><h5>1.02 : 1.00 Ratio</h5></div></div>
+                <div class="col s12 m4"><div class="card center-align padding-10"><h5>7.8 Hrs Sleep</h5></div></div>
+            </div>
+            <div class="card blue-grey darken-4 white-text">
+                <div class="card-content">
+                    <p class="flow-text">"Live as if you were to die tomorrow. Learn as if you were to live forever."</p>
+                    <p class="right-align">— Mahatma Gandhi</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="settings" class="spa-section">
+            <h4>App Calibration Suite</h4>
+            <div class="card white p-15" style="padding: 15px;">
+                <p class="range-field"><label>Study to Relaxation Balancing Ratio Offset</label><input type="range" min="1" max="3" value="1" /></p>
+                <p><label><input name="env" type="radio" checked /> <span>Fully Online Framework</span></label></p>
+                <button class="btn indigo" onclick="M.toast({html: 'Configurations cached.'})">Save Setup</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="setup-modal" class="modal">
+        <div class="modal-content">
+            <h4>Loci Intellectus Onboarding</h4>
+            <p>Configure default targets:</p>
+            <input type="number" value="45">
+        </div>
+        <div class="modal-footer"><a href="#" class="modal-close btn indigo">Deploy</a></div>
+    </div>
+
+        <footer class="page-footer indigo darken-4">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2026 Loci Intellectus Hub - INF 654 Sprint
+            </div>
+        </div>
+    </footer>
+
+    <script rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></script>
+    <script src="js/ui.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
