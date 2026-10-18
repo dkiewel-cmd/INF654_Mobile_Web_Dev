@@ -54,22 +54,6 @@ nav ul a:hover {
     position: relative;
 }
 
-nav .sidenav-trigger {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    min-width: 48px;
-    height: 100% !important;
-    cursor: pointer;
-    position: relative;
-    z-index: 5;
-}
-
-nav .sidenav-trigger i {
-    line-height: inherit !important;
-    height: auto !important;
-}
-
 nav .brand-logo.left {
     position: static !important;
     transform: none !important;
