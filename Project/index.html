@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a237e">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
 
-    <div class="offline-banner">
-        <i class="material-icons left" style="margin-right: 6px; font-size: 1.1rem;">cloud_queue</i>
-        PWA Node Running via Local Storage Shell Cached Stacks
-    </div>
+    <div id="status-banner" class="offline-banner">Checking connection…</div>
 
     <header>
         <nav>
@@ -234,7 +235,7 @@
                         <div class="card-content">
                             <span class="card-title">Log Academic/Work Event</span>
                             <div class="input-field col s12">
-                                <input id="title" type="text" value="INF 654 Architecture Essay">
+                                <input id="title" type="text" placeholder="e.g. INF 654 Architecture Essay">
                                 <label for="title" class="active">Topic</label>
                             </div>
                             <div class="input-field col s12">
@@ -243,7 +244,8 @@
                                     <option value="exam">Upcoming Exam Target</option>
                                 </select>
                             </div>
-                            <button class="btn indigo" style="width:100%;" onclick="M.toast({html: 'Item queued! Dynamic routine engine refreshed.'})">Queue Item</button>
+                            <button id="task-submit" class="btn indigo" style="width:100%;">Queue Item</button>
+                            <button id="task-cancel" class="btn-flat waves-effect" style="width:100%; display:none; margin-top:8px;">Cancel Edit</button>
                         </div>
                     </div>
                 </div>
@@ -258,6 +260,18 @@
                                 </div>
                                 <div class="file-path-wrapper"><input class="file-path validate" type="text" placeholder="Upload text formats"></div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Queued Tasks</span>
+                            <ul id="task-list" class="collection task-list">
+                                <li class="collection-item grey-text">Loading tasks…</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -306,8 +320,9 @@
         </div>
     </footer>
 
-    <script rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="js/ui.js"></script>
     <script src="app.js"></script>
+    <script type="module" src="js/tasks.js"></script>
 </body>
 </html>
