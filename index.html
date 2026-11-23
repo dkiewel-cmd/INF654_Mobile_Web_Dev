@@ -30,6 +30,7 @@
                     <li><a href="#" onclick="switchPage('tasks')">Task Allocations</a></li>
                     <li><a href="#" onclick="switchPage('profile')">Analytics</a></li>
                     <li><a href="#" onclick="switchPage('settings')"><i class="material-icons">settings</i></a></li>
+                    <li><a href="#" class="auth-link"><i class="material-icons left auth-icon">login</i><span class="auth-label">Sign in</span></a></li>
                 </ul>
             </div>
         </nav>
@@ -38,8 +39,8 @@
             <li><div class="user-view">
                 <div class="background" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);"></div>
                 <a><i class="material-icons white-text large">account_circle</i></a>
-                <a><span class="white-text name" style="font-weight:600;">System Workspace</span></a>
-                <a><span class="white-text email">pwa.framework@loci.edu</span></a>
+                <a><span class="white-text name" id="sidenav-name" style="font-weight:600;">Guest</span></a>
+                <a><span class="white-text email" id="sidenav-email">Not signed in</span></a>
             </div></li>
             <li><a href="#" onclick="switchPage('home')"><i class="material-icons">home</i>Home Dashboard</a></li>
             <li><a href="#" onclick="switchPage('study')"><i class="material-icons">timer</i>Study System</a></li>
@@ -47,6 +48,8 @@
             <li><a href="#" onclick="switchPage('tasks')"><i class="material-icons">assignment</i>Task Allocations</a></li>
             <li><a href="#" onclick="switchPage('profile')"><i class="material-icons">person</i>Analytics Workspace</a></li>
             <li><a href="#" onclick="switchPage('settings')"><i class="material-icons">settings</i>System Settings</a></li>
+            <li><div class="divider"></div></li>
+            <li><a href="#" class="auth-link sidenav-close"><i class="material-icons auth-icon">login</i><span class="auth-label">Sign in</span></a></li>
         </ul>
     </header>
 
@@ -303,6 +306,29 @@
         </section>
     </main>
 
+    <!-- Firebase Authentication: email + password sign-in / create account -->
+    <div id="auth-modal" class="modal">
+        <form id="auth-form" novalidate>
+            <div class="modal-content">
+                <h5><i class="material-icons left">account_circle</i>Sign in to Loci Intellectus</h5>
+                <p class="grey-text">Sign in to keep your tasks in your own account and load them on any device.</p>
+                <div class="input-field">
+                    <input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com">
+                    <label for="auth-email" class="active">Email</label>
+                </div>
+                <div class="input-field">
+                    <input id="auth-password" type="password" autocomplete="current-password" placeholder="At least 6 characters">
+                    <label for="auth-password" class="active">Password</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-close btn-flat waves-effect">Cancel</button>
+                <button type="button" id="auth-signup" class="btn-flat waves-effect indigo-text">Create account</button>
+                <button type="submit" id="auth-signin" class="btn indigo waves-effect">Sign in</button>
+            </div>
+        </form>
+    </div>
+
     <div id="setup-modal" class="modal">
         <div class="modal-content">
             <h4>Loci Intellectus Onboarding</h4>
@@ -323,6 +349,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="js/ui.js"></script>
     <script src="app.js"></script>
+    <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/tasks.js"></script>
 </body>
 </html>

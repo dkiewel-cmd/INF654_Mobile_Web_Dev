@@ -32,11 +32,13 @@ let tasksCol = null;  // Firestore "tasks" collection reference
 async function initFirebase() {
     if (!configured || tasksCol) return;
     try {
-        const [{ initializeApp }, firestore] = await Promise.all([
+        const [{ initializeApp, getApps, getApp }, firestore] = await Promise.all([
             import(`${FIREBASE_SDK}/firebase-app.js`),
             import(`${FIREBASE_SDK}/firebase-firestore.js`)
         ]);
-        const db = firestore.getFirestore(initializeApp(firebaseConfig));
+        // auth.js also uses Firebase: reuse the app if it already exists
+        const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+        const db = firestore.getFirestore(app);
         fs = firestore;
         tasksCol = firestore.collection(db, 'tasks');
     } catch (err) {
