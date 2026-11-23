@@ -1,5 +1,5 @@
 // Bump this version whenever any cached file changes so users get the new files.
-const CACHE_NAME = 'loci-intellectus-cache-v9';
+const CACHE_NAME = 'loci-intellectus-cache-v10';
 
 // App shell: everything needed to open the interface and work with IndexedDB data offline
 const ASSETS_TO_CACHE = [
@@ -19,6 +19,7 @@ const ASSETS_TO_CACHE = [
     'app.js',
     'js/ui.js',
     // Data layer: Firebase + IndexedDB CRUD and sync
+    'js/auth.js',
     'js/tasks.js',
     'js/idb.js',
     'js/firebase-config.js',
@@ -27,7 +28,8 @@ const ASSETS_TO_CACHE = [
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js',
-    'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js'
+    'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js',
+    'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js'
 ];
 
 const ICON_FONT_CSS = 'https://fonts.googleapis.com/icon?family=Material+Icons';
@@ -79,7 +81,8 @@ self.addEventListener('fetch', event => {
     // Never cache live Firebase/Firestore traffic; it must always hit the network
     const host = new URL(event.request.url).hostname;
     if (host === 'firestore.googleapis.com' || host.endsWith('firebaseio.com') ||
-        host.endsWith('identitytoolkit.googleapis.com')) return;
+        host.endsWith('identitytoolkit.googleapis.com') ||
+        host === 'securetoken.googleapis.com') return;
 
     const isNavigation = event.request.mode === 'navigate';
 
