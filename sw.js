@@ -1,5 +1,5 @@
 // Bump this version whenever any cached file changes so users get the new files.
-const CACHE_NAME = 'loci-intellectus-cache-v10';
+const CACHE_NAME = 'loci-intellectus-cache-v11';
 
 // App shell: everything needed to open the interface and work with IndexedDB data offline
 const ASSETS_TO_CACHE = [

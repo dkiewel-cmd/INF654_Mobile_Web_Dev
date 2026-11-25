@@ -1,0 +1,31 @@
+rules_version = '2';
+
+// Loci Intellectus: Firestore Security Rules
+// Each user's tasks live at users/{uid}/tasks/{taskId}. A signed-in user can only
+// read or write documents under their own uid; everything else is denied.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId}/tasks/{taskId} {
+      function isOwner() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      // A task must have the fields the app writes, with sensible types
+      function validTask() {
+        let t = request.resource.data;
+        return t.id == taskId
+          && t.title is string && t.title.size() > 0 && t.title.size() <= 200
+          && t.type in ['homework', 'exam']
+          && t.done is bool
+          && t.createdAt is number
+          && t.updatedAt is number;
+      }
+
+      allow read, delete: if isOwner();
+      allow create, update: if isOwner() && validTask();
+    }
+
+    // Anything not matched above (including the old shared "tasks" collection) is denied
+  }
+}

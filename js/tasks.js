@@ -2,8 +2,12 @@
  * tasks.js: task CRUD, online/offline storage, and synchronization
  *
  * Storage rules:
- *   ONLINE  → each create/update/delete is written to Firestore (collection "tasks"),
- *             then mirrored into IndexedDB with synced: true (so it's available offline).
+ *   ONLINE  → each create/update/delete is written to the signed-in user's own Firestore
+ *             collection, users/{uid}/tasks, then mirrored into IndexedDB with
+ *             synced: true (so it's available offline).
+ *   SIGNED OUT → treated like offline: changes stay on this device until someone signs in.
+ *             Firestore Security Rules (firestore.rules) only let a user read or write
+ *             documents under their own users/{uid} path.
  *   OFFLINE → the change is written only to IndexedDB with synced: false.
  *             Deletes become tombstones (deleted: true) so they can be replayed later.
  *   FAILURE → if a Firebase call fails or times out while "online", the change falls
@@ -20,6 +24,7 @@
  */
 import { firebaseConfig } from './firebase-config.js';
 import { idbGetAll, idbPut, idbDelete } from './idb.js';
+import { getCurrentUser } from './auth.js';
 
 const FIREBASE_SDK = 'https://www.gstatic.com/firebasejs/10.12.2';
 const configured = !firebaseConfig.apiKey.startsWith('YOUR_');
@@ -27,10 +32,17 @@ const configured = !firebaseConfig.apiKey.startsWith('YOUR_');
 // The Firebase SDK is loaded separately (dynamic import) so that if it can't load
 // while offline, the IndexedDB CRUD below still works normally.
 let fs = null;        // Firestore functions: doc, getDocs, setDoc, deleteDoc
-let tasksCol = null;  // Firestore "tasks" collection reference
+let db = null;        // Firestore instance
+let tasksCol = null;  // the signed-in user's collection: users/{uid}/tasks (null when signed out)
+
+// Points tasksCol at the current user's own collection, or null when nobody is signed in
+// (null makes isOnline() false, so everything falls back to IndexedDB).
+function setUserCollection(user) {
+    tasksCol = (db && user) ? fs.collection(db, 'users', user.uid, 'tasks') : null;
+}
 
 async function initFirebase() {
-    if (!configured || tasksCol) return;
+    if (!configured || db) return;
     try {
         const [{ initializeApp, getApps, getApp }, firestore] = await Promise.all([
             import(`${FIREBASE_SDK}/firebase-app.js`),
@@ -38,9 +50,9 @@ async function initFirebase() {
         ]);
         // auth.js also uses Firebase: reuse the app if it already exists
         const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-        const db = firestore.getFirestore(app);
         fs = firestore;
-        tasksCol = firestore.collection(db, 'tasks');
+        db = firestore.getFirestore(app);
+        setUserCollection(getCurrentUser());   // in case sign-in was restored before this ran
     } catch (err) {
         console.warn('Firebase SDK unavailable, running on IndexedDB only:', err);
     }
@@ -215,8 +227,11 @@ async function updateBanner() {
     if (!configured) {
         banner.textContent = 'Firebase not configured: saving to this device only (IndexedDB)';
         banner.className = 'offline-banner status-offline';
+    } else if (navigator.onLine && db && !getCurrentUser()) {
+        banner.textContent = `Signed out: tasks saved on this device only. Sign in to sync${pendingText}`;
+        banner.className = 'offline-banner status-offline';
     } else if (navigator.onLine && tasksCol) {
-        banner.textContent = `Online: tasks saved to Firebase${pendingText}`;
+        banner.textContent = `Online: tasks saved to your Firebase account${pendingText}`;
         banner.className = 'offline-banner status-online';
     } else {
         banner.textContent = `Offline: tasks saved locally (IndexedDB)${pendingText}`;
@@ -350,6 +365,14 @@ document.getElementById('task-list').addEventListener('click', handleListClick);
 window.addEventListener('online', () => {
     M.toast({ html: '🟢 Back online: syncing with Firebase…' });
     syncPending();
+});
+// Sign-in / sign-out (fired by auth.js): switch to that user's Firestore collection,
+// reload their tasks, and push any changes made while signed out
+window.addEventListener('auth-changed', async ({ detail: { user } }) => {
+    await initFirebase();
+    setUserCollection(user);
+    await render();
+    if (user) syncPending();
 });
 window.addEventListener('offline', () => {
     M.toast({ html: '🟠 Offline: changes will be saved on this device' });
